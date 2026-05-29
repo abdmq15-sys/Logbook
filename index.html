@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Log Book Flights</title>
+
+<!-- iOS PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Log Book">
+<meta name="theme-color" content="#000000">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="manifest" href="data:application/manifest+json,%7B%0A%20%20%22name%22%3A%20%22Log%20Book%20Flights%22%2C%0A%20%20%22short_name%22%3A%20%22Log%20Book%22%2C%0A%20%20%22start_url%22%3A%20%22.%22%2C%0A%20%20%22display%22%3A%20%22standalone%22%2C%0A%20%20%22background_color%22%3A%20%22%2307090b%22%2C%0A%20%20%22theme_color%22%3A%20%22%23000000%22%2C%0A%20%20%22orientation%22%3A%20%22portrait%22%2C%0A%20%20%22icons%22%3A%20%5B%0A%20%20%20%20%7B%22src%22%3A%20%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAKgklEQVR4nO3dy3JTSQJFUVXNOrr//0shmPaACpcAP6Sr%2B8jMvdacsgrbZ5O%2BCbrdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABvXt%2B4%2BrXwJc5u%2BrXwAA1xAAgCgBAIgSALp%2BPgDwGIAsAQCIEgCAKAEAiBIAgCgBAIgSAIAoASDq/vanm6A0CQBAlAAARAkAQJQAAEQJAECUAFD057UfF4EIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgByPrrx6SYoNQIAECUAAFECABAlAABRAgAQJQAAUQJAy%2Bd3Pd0EJUUAAKIEACBKAACiBAAgSgAAogSAkEcu%2BbgIRIcAAEQJAECUAABECQBAlAAARAkAQJQAUPH4/U43QYkQAIAoAQCIEgCAKAEAiBIAgCgBAIgSABKevdnpJigFAgAQJQAAUQIAECUAAFECABAlAABRAsD6tt3pdBOU5QkAQJQAAEQJAECUAABECQBAlACwuFcu87gIxNoEACBKAACiBAAgSgAAogQAIEoAAKIEgJW9fo/TTVAWJgAAUQIAECUAAFECABAlAABRAgAQJQAsa68bnG6CsioBAIgSAIAoAQCIEgCAKAEAiBIA1rTv1R0XgViSAABECQBAlAAARAkAQJQAAEQJAECUALCgI25tugnKegQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACi/rr6BcCevn3/cfSH%2BN9//3P0h4BzCACLOGH678kACxAApnfy9N%2BTAaYmAEzswum/JwNMSgCYzyC7/yclYC4CwEyGnf57MsAsBIA5TDH992SA8QkAo5tu%2Bu/JACMTAMY19fTfkwHGJACMaJnpvycDjEYAGMuS039PBhiHADCK5af/ngwwAgHgeqnpvycDXEsAuEx29/%2BkBFxCALiA6X%2BXDHAyAeBUpv9LMsBpBICTmP6nyAAnEAAOZ/o3kwEOJQAcyPTvQgY4iABwCNO/OxlgdwLAzkz/oWSAHQkAuzH9p5EBdiEAvMruX0gJeIUAsJ3pH4QMsI0AsIXpH5AM8CwB4Dmmf3AywOMEgEeZ/onIAI8QAL5m%2BiclA3xOAPiM6V%2BADPARAeB9pn8xMsCfBIBf2P3lKQFvBIB/mP4UGeAmANxMf5gMxAlAmunnJgNhAhBl%2BvmNDAQJQI7p5xMykCIAIaafB8lAhAAkmH42kIHlCcDiTD8vkoGFCcCa7D67U4L1CMBqTD%2BHkoGVCMA6TD%2BnkYE1CMAKTD%2BXkIHZCcDcTD%2BXk4F5CcCsTD9DkYEZCcB8TD/DkoG5CMBMTD9TkIFZCMAcTD/TkYHxCcDQ7D4LUIJhCcCgTD%2BLkYEBCcBwTD8Lk4GhCMBATD8RMjAIARiC6SdIBi4nABcz/cTJwIUE4DKmH97IwCUE4AKmH94lAycTgFOZfviSDJxGAM5g92EDJTiaABzL9MOLZOA4AnAU0w87koEjCMD%2BTD8cRAb2JQB7Mv1wAhnYiwDsw/TDyWTgdQLwKtMPF5KBVwjAdqYfBiED2wjAFqYfBiQDzxKAJ9h9mIISPEgAHmL6YToy8CUB%2BILph6nJwCcE4EOmH5YhA%2B8SgHeYfliSDPxGAH5h%2BmF5MvBGAP5h%2BiFFBm4CcDP9EBbPQDcAdh940yxBMQCmH3hXLQOtAJh%2B4EudDFQCYPqBpxQysH4ATD%2Bw2doZWDkAph/YxaoZWDMAph/Y3XoZWC0Aph841EoZWCcAph84zRoZmD4Adh%2B40NQlmDgAph8YxKQZmDIAph8Y0HQZmCwAph8Y3EQZmCYAph%2BYyBQZmCAAph%2BY1OAZGDoAph9YwLAZGDQAph9YzIAZGC4Aph9Y2FAZGCUAdh9IGaEE1wfA9ANZ12bgygCYfoDbdRm4JgCm/ykjHBXnctAXmE/Es3ynP%2BX8L7CzA/Dt%2Bw/fRRxNAJjUyQv592kf6SffQgAfOXkhzw4AAIMQAIAoAQCIEgCAKAEAiBIAFnTEVQoX2FiPAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAa9r3n%2B/3ZgAsSQAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAFjWXu/i4t1gWJUAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlACwstffy8W7wbAwAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAFvfKP%2BjvzQBYmwAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUALC%2Bbe/r4t1gWJ4AAEQJAECUAABECQBAlAAARAkAQJQAAEQJAEDUX1e/ADjWt%2B8/Xvnl/joYCxMAlvXi9N%2BTAZbkR0Csacf13/2/BoNwAmA1h461owArEQDWcdqf02WANQgAK7jkRzQywOwEgLld/tN5GWBeHgIzscvXf5DXANs4ATClAWfXUYDpCACTGXD678kAExEApjH49N%2BTAabgGQBzmGj9b7O9WrKcABjd1GPqKMDIBIBxTT3992SAMQkAI1pm%2Bu/JAKMRAMay5PTfkwHG4SEwA1l%2B/W%2BN/0dm4QTAEIKz6CjA5QSAiwWn/54McCEB4DLx6b8nA1xCALiA6X%2BXDHAyD4E5m/X/iN8ZTuYEwHkM3IMcBTiHAHAG07%2BBDHA0AeBYpv9FMsBxBICjmP4dyQBH8BCYQ1j/ffn95AhOAOzMVB3KUYAdCQC7Mf2nkQF2IQDswPRfQgZ4kQDwEtN/ORlgMw%2BB2c76j8Bngc2cANjC6AzIUYBnCQDPMf2DkwEeJwA8yvRPRAZ4hGcAPMT6z8Xni0c4AfAFUzI1RwE%2BIQB8yPQvQwZ4lwDwDtO/JBngNwLAL0z/8mSANx4C8y/rX%2BCzzBsnAG43o5DkKIAA1Jn%2BOBkoE4Au088bGWgSgCLTz7tkoMZD4Bzrz0d8bdQ4AYT49uZBjgIRApBg%2BtlABpYnAPxLJyIsOz8JAFtIxYDMOs8SAA6kE7uw7BxEABhCMBVmncsJADOZohOWnVkIAGvaPRVmHWApUxwpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACApP8D3YFHLsv64NYAAAAASUVORK5CYII%3D%22%2C%20%22sizes%22%3A%20%22512x512%22%2C%20%22type%22%3A%20%22image/png%22%2C%20%22purpose%22%3A%20%22any%20maskable%22%7D%0A%20%20%5D%0A%7D">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+ --bg:#07090b;--panel:#0e1418;--panel-2:#131c22;--line:#202c33;--ink:#e6edf1;--muted:#7a8b95;
+ --amber:#e9a534;--amber-dim:#b07d18;--cyan:#3fb6ce;--night:#6b8cff;--red:#e2625f;--green:#46c98f;
+}
+html,body{background:var(--bg);}
+body{
+ min-height:100vh;color:var(--ink);font-family:'IBM Plex Sans Arabic',sans-serif;direction:rtl;
+ background:radial-gradient(1100px 560px at 82% -10%, rgba(233,165,52,.05), transparent 60%), var(--bg);
+ padding:calc(env(safe-area-inset-top) + 12px) 12px calc(env(safe-area-inset-bottom) + 50px);
+}
+.wrap{max-width:1180px;margin:0 auto;}
+.head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:1px solid var(--line);background:linear-gradient(180deg,var(--panel-2),var(--panel));border-radius:14px;padding:15px 16px;}
+.brand{display:flex;align-items:center;gap:13px;}
+.ic{width:46px;height:46px;border-radius:12px;background:#000;border:1px solid #2b3941;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 4px 14px rgba(0,0,0,.5);}
+.ic img{width:30px;height:30px;}
+.title{font-family:'Saira Condensed';font-weight:700;font-size:25px;letter-spacing:.8px;line-height:1;}
+.sub{color:var(--muted);font-size:12.5px;margin-top:3px;}
+.ptag{font-family:'Saira Condensed';font-weight:700;letter-spacing:1.8px;background:rgba(255,255,255,.04);color:var(--ink);border:1px solid var(--line);padding:7px 14px;border-radius:8px;font-size:13.5px;}
+.ptag b{color:var(--amber);}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+.stat{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:12px;text-align:center;position:relative;overflow:hidden;}
+.stat .k{color:var(--muted);font-size:10px;letter-spacing:.5px;text-transform:uppercase;}
+.stat .v{font-family:'IBM Plex Mono';font-weight:700;font-size:26px;line-height:1.1;margin-top:5px;}
+.stat.total .v{color:var(--amber);}.stat.day .v{color:var(--green);}.stat.night .v{color:var(--night);}.stat.flights .v{color:var(--cyan);}
+.bar{position:absolute;bottom:0;right:0;left:0;height:3px;}
+.stat.total .bar{background:var(--amber);}.stat.day .bar{background:var(--green);}.stat.night .bar{background:var(--night);}.stat.flights .bar{background:var(--cyan);}
+.card{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:14px;margin-top:14px;}
+.ctitle{font-family:'Saira Condensed';font-weight:700;font-size:16px;letter-spacing:.8px;color:var(--amber);margin-bottom:13px;text-transform:uppercase;}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field.full{grid-column:1/-1;}
+.label{font-size:12px;color:var(--muted);font-weight:600;}
+.in,.sel{width:100%;background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:12px;font-size:16px;font-family:'IBM Plex Sans Arabic';outline:none;transition:border-color .15s,box-shadow .15s;appearance:none;}
+.sel{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237a8b95' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:left 12px center;padding-left:34px;}
+.in:focus,.sel:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(233,165,52,.13);}
+.in.num{font-family:'IBM Plex Mono';font-weight:700;font-size:18px;text-align:center;letter-spacing:1px;}
+.row-in{display:flex;gap:6px;align-items:stretch;}
+.row-in .sel{flex:1;}
+.mini{flex:0 0 auto;width:46px;border-radius:10px;border:1px solid var(--amber-dim);background:rgba(233,165,52,.07);color:var(--amber);font-size:22px;font-weight:700;cursor:pointer;line-height:1;}
+.mini:active{transform:scale(.93);}
+.addin{display:flex;gap:6px;margin-top:6px;}
+.addin .in{flex:1;}
+.addin button{border:none;border-radius:10px;padding:0 16px;font-weight:700;cursor:pointer;font-family:'IBM Plex Sans Arabic';}
+.addin .ok{background:var(--green);color:#06231a;}
+.addin .no{background:var(--panel-2);color:var(--muted);border:1px solid var(--line);}
+.hide{display:none;}
+.seg{display:flex;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.seg button{flex:1;border:none;background:transparent;color:var(--muted);padding:12px 0;font-weight:700;cursor:pointer;font-family:'Saira Condensed';letter-spacing:1px;font-size:15px;}
+.seg button.on-day{background:rgba(70,201,143,.16);color:var(--green);}
+.seg button.on-night{background:rgba(107,140,255,.16);color:var(--night);}
+.route{display:flex;gap:8px;align-items:flex-end;}
+.route .field{flex:1;}
+.route .arrow{color:var(--muted);font-family:'Saira Condensed';font-weight:700;padding-bottom:12px;font-size:18px;}
+.submit{width:100%;margin-top:14px;border:none;cursor:pointer;background:linear-gradient(150deg,var(--amber),var(--amber-dim));color:#1a1206;font-weight:700;font-size:16px;padding:15px;border-radius:12px;font-family:'IBM Plex Sans Arabic';box-shadow:0 8px 22px rgba(233,165,52,.18);}
+.submit:active{transform:scale(.985);}
+.tcard{border:1px solid var(--line);background:var(--panel);border-radius:14px;margin-top:14px;overflow:hidden;}
+.thead{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);}
+.thead h3{font-family:'Saira Condensed';font-weight:700;font-size:16px;letter-spacing:.8px;color:var(--cyan);text-transform:uppercase;}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;min-width:900px;}
+thead th{background:var(--panel-2);color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:11px 10px;text-align:center;white-space:nowrap;border-bottom:1px solid var(--line);position:sticky;top:0;}
+tbody td{padding:11px 10px;text-align:center;border-bottom:1px solid var(--line);font-size:14px;white-space:nowrap;}
+.hrs{font-family:'IBM Plex Mono';font-weight:700;font-size:16px;color:var(--amber);}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;font-family:'Saira Condensed';letter-spacing:.5px;}
+.pill.day{background:rgba(70,201,143,.14);color:var(--green);}
+.pill.night{background:rgba(107,140,255,.14);color:var(--night);}
+.with{font-family:'Saira Condensed';font-weight:600;letter-spacing:.5px;}
+.ftype{font-family:'Saira Condensed';font-weight:600;color:var(--cyan);letter-spacing:.5px;}
+.ac{font-family:'Saira Condensed';font-weight:600;letter-spacing:.5px;}
+.rt{font-family:'IBM Plex Mono';font-weight:600;font-size:13px;}
+.rt i{color:var(--muted);font-style:normal;margin:0 5px;}
+.rmk{font-family:'IBM Plex Sans Arabic';color:var(--muted);font-size:13px;max-width:160px;overflow:hidden;text-overflow:ellipsis;}
+.dt{font-family:'IBM Plex Mono';color:var(--muted);font-size:13px;}
+.del{background:transparent;border:1px solid var(--line);color:var(--red);border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:15px;}
+tfoot td{background:var(--panel-2);font-weight:700;padding:13px 10px;border-top:2px solid var(--amber-dim);}
+tfoot .lbl{font-family:'Saira Condensed';letter-spacing:1px;color:var(--amber);font-size:14px;}
+tfoot .sum{font-family:'IBM Plex Mono';font-size:18px;color:var(--amber);}
+.empty{padding:38px 16px;text-align:center;color:var(--muted);font-size:14px;}
+.foot{display:flex;justify-content:flex-end;padding:10px 14px;}
+.reset{background:transparent;border:1px solid var(--line);color:var(--muted);font-size:12.5px;padding:7px 12px;border-radius:9px;cursor:pointer;font-family:'IBM Plex Sans Arabic';}
+@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr);}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="brand">
+      <div class="ic"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAKgklEQVR4nO3dy3JTSQJFUVXNOrr//0shmPaACpcAP6Sr+8jMvdacsgrbZ5O+CbrdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABvXt+4+rXwJc5u+rXwAA1xAAgCgBAIgSALp+PgDwGIAsAQCIEgCAKAEAiBIAgCgBAIgSAIAoASDq/vanm6A0CQBAlAAARAkAQJQAAEQJAECUAFD057UfF4EIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgByPrrx6SYoNQIAECUAAFECABAlAABRAgAQJQAAUQJAy+d3Pd0EJUUAAKIEACBKAACiBAAgSgAAogSAkEcu+bgIRIcAAEQJAECUAABECQBAlAAARAkAQJQAUPH4/U43QYkQAIAoAQCIEgCAKAEAiBIAgCgBAIgSABKevdnpJigFAgAQJQAAUQIAECUAAFECABAlAABRAsD6tt3pdBOU5QkAQJQAAEQJAECUAABECQBAlACwuFcu87gIxNoEACBKAACiBAAgSgAAogQAIEoAAKIEgJW9fo/TTVAWJgAAUQIAECUAAFECABAlAABRAgAQJQAsa68bnG6CsioBAIgSAIAoAQCIEgCAKAEAiBIA1rTv1R0XgViSAABECQBAlAAARAkAQJQAAEQJAECUALCgI25tugnKegQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACi/rr6BcCevn3/cfSH+N9//3P0h4BzCACLOGH678kACxAApnfy9N+TAaYmAEzswum/JwNMSgCYzyC7/yclYC4CwEyGnf57MsAsBIA5TDH992SA8QkAo5tu+u/JACMTAMY19fTfkwHGJACMaJnpvycDjEYAGMuS039PBhiHADCK5af/ngwwAgHgeqnpvycDXEsAuEx29/+kBFxCALiA6X+XDHAyAeBUpv9LMsBpBICTmP6nyAAnEAAOZ/o3kwEOJQAcyPTvQgY4iABwCNO/OxlgdwLAzkz/oWSAHQkAuzH9p5EBdiEAvMruX0gJeIUAsJ3pH4QMsI0AsIXpH5AM8CwB4Dmmf3AywOMEgEeZ/onIAI8QAL5m+iclA3xOAPiM6V+ADPARAeB9pn8xMsCfBIBf2P3lKQFvBIB/mP4UGeAmANxMf5gMxAlAmunnJgNhAhBl+vmNDAQJQI7p5xMykCIAIaafB8lAhAAkmH42kIHlCcDiTD8vkoGFCcCa7D67U4L1CMBqTD+HkoGVCMA6TD+nkYE1CMAKTD+XkIHZCcDcTD+Xk4F5CcCsTD9DkYEZCcB8TD/DkoG5CMBMTD9TkIFZCMAcTD/TkYHxCcDQ7D4LUIJhCcCgTD+LkYEBCcBwTD8Lk4GhCMBATD8RMjAIARiC6SdIBi4nABcz/cTJwIUE4DKmH97IwCUE4AKmH94lAycTgFOZfviSDJxGAM5g92EDJTiaABzL9MOLZOA4AnAU0w87koEjCMD+TD8cRAb2JQB7Mv1wAhnYiwDsw/TDyWTgdQLwKtMPF5KBVwjAdqYfBiED2wjAFqYfBiQDzxKAJ9h9mIISPEgAHmL6YToy8CUB+ILph6nJwCcE4EOmH5YhA+8SgHeYfliSDPxGAH5h+mF5MvBGAP5h+iFFBm4CcDP9EBbPQDcAdh940yxBMQCmH3hXLQOtAJh+4EudDFQCYPqBpxQysH4ATD+w2doZWDkAph/YxaoZWDMAph/Y3XoZWC0Aph841EoZWCcAph84zRoZmD4Adh+40NQlmDgAph8YxKQZmDIAph8Y0HQZmCwAph8Y3EQZmCYAph+YyBQZmCAAph+Y1OAZGDoAph9YwLAZGDQAph9YzIAZGC4Aph9Y2FAZGCUAdh9IGaEE1wfA9ANZ12bgygCYfoDbdRm4JgCm/ykjHBXnctAXmE/Es3ynP+X8L7CzA/Dt+w/fRRxNAJjUyQv592kf6SffQgAfOXkhzw4AAIMQAIAoAQCIEgCAKAEAiBIAFnTEVQoX2FiPAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAa9r3n+/3ZgAsSQAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAFjWXu/i4t1gWJUAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlACwstffy8W7wbAwAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAFvfKP+jvzQBYmwAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUALC+be/r4t1gWJ4AAEQJAECUAABECQBAlAAARAkAQJQAAEQJAEDUX1e/ADjWt+8/Xvnl/joYCxMAlvXi9N+TAZbkR0Csacf13/2/BoNwAmA1h461owArEQDWcdqf02WANQgAK7jkRzQywOwEgLld/tN5GWBeHgIzscvXf5DXANs4ATClAWfXUYDpCACTGXD678kAExEApjH49N+TAabgGQBzmGj9b7O9WrKcABjd1GPqKMDIBIBxTT3992SAMQkAI1pm+u/JAKMRAMay5PTfkwHG4SEwA1l+/W+N/0dm4QTAEIKz6CjA5QSAiwWn/54McCEB4DLx6b8nA1xCALiA6X+XDHAyD4E5m/X/iN8ZTuYEwHkM3IMcBTiHAHAG07+BDHA0AeBYpv9FMsBxBICjmP4dyQBH8BCYQ1j/ffn95AhOAOzMVB3KUYAdCQC7Mf2nkQF2IQDswPRfQgZ4kQDwEtN/ORlgMw+B2c76j8Bngc2cANjC6AzIUYBnCQDPMf2DkwEeJwA8yvRPRAZ4hGcAPMT6z8Xni0c4AfAFUzI1RwE+IQB8yPQvQwZ4lwDwDtO/JBngNwLAL0z/8mSANx4C8y/rX+CzzBsnAG43o5DkKIAA1Jn+OBkoE4Au088bGWgSgCLTz7tkoMZD4Bzrz0d8bdQ4AYT49uZBjgIRApBg+tlABpYnAPxLJyIsOz8JAFtIxYDMOs8SAA6kE7uw7BxEABhCMBVmncsJADOZohOWnVkIAGvaPRVmHWApUxwpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACApP8D3YFHLsv64NYAAAAASUVORK5CYII=" alt=""></div>
+      <div><div class="title">LOG BOOK FLIGHTS</div><div class="sub">سجل الطيران</div></div>
+    </div>
+    <div class="ptag">PILOT <b>BISHRI</b></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat total"><div class="k">إجمالي الساعات</div><div class="v" id="s-total">0.0</div><div class="bar"></div></div>
+    <div class="stat day"><div class="k">نهار DAY</div><div class="v" id="s-day">0.0</div><div class="bar"></div></div>
+    <div class="stat night"><div class="k">ليل NIGHT</div><div class="v" id="s-night">0.0</div><div class="bar"></div></div>
+    <div class="stat flights"><div class="k">عدد الرحلات</div><div class="v" id="s-flights">0</div><div class="bar"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle">إضافة رحلة جديدة</div>
+    <div class="grid">
+      <div class="field"><label class="label">التاريخ</label><input class="in" type="date" id="f-date"></div>
+      <div class="field"><label class="label">زمن الرحلة (ساعات)</label><input class="in num" type="number" inputmode="decimal" step="0.1" min="0" placeholder="0.0" id="f-hours"></div>
+      <div class="field"><label class="label">الوقت</label>
+        <div class="seg" id="f-dn">
+          <button data-dn="DAY" class="on-day">DAY</button>
+          <button data-dn="NIGHT">NIGHT</button>
+        </div>
+      </div>
+      <div class="field"><label class="label">SORTI</label><select class="sel" id="f-sortie"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+
+      <div class="field"><label class="label">With — مع من</label>
+        <div class="row-in"><select class="sel" id="f-with"></select><button class="mini" data-add="with">+</button></div>
+        <div class="addin hide" id="add-with"><input class="in" placeholder="اسم الطيار"><button class="ok">حفظ</button><button class="no">×</button></div>
+      </div>
+
+      <div class="field"><label class="label">نوع الرحلة</label>
+        <div class="row-in"><select class="sel" id="f-ftype"></select><button class="mini" data-add="ftype">+</button></div>
+        <div class="addin hide" id="add-ftype"><input class="in" placeholder="نوع رحلة جديد"><button class="ok">حفظ</button><button class="no">×</button></div>
+      </div>
+
+      <div class="field"><label class="label">نوع الطائرة</label>
+        <div class="row-in"><select class="sel" id="f-ac"></select><button class="mini" data-add="ac">+</button></div>
+        <div class="addin hide" id="add-ac"><input class="in" placeholder="نوع الطائرة"><button class="ok">حفظ</button><button class="no">×</button></div>
+      </div>
+
+      <div class="field full"><label class="label">From — To (من / إلى)</label>
+        <div class="route">
+          <div class="field"><input class="in" id="f-from" list="places" placeholder="FROM"></div>
+          <span class="arrow">←</span>
+          <div class="field"><input class="in" id="f-to" list="places" placeholder="TO"></div>
+        </div>
+        <datalist id="places"></datalist>
+      </div>
+
+      <div class="field full"><label class="label">REMARKS — ملاحظات</label>
+        <div class="row-in"><select class="sel" id="f-rmk"></select><button class="mini" data-add="rmk">+</button></div>
+        <div class="addin hide" id="add-rmk"><input class="in" placeholder="ملاحظة جديدة"><button class="ok">حفظ</button><button class="no">×</button></div>
+      </div>
+    </div>
+    <button class="submit" id="f-submit">تسجيل الرحلة</button>
+  </div>
+
+  <div class="tcard">
+    <div class="thead"><h3 id="t-count">السجل · 0 رحلة</h3></div>
+    <div class="scroll">
+      <table>
+        <thead><tr>
+          <th>زمن الرحلة</th><th>الوقت</th><th>SORTI</th><th>WITH</th><th>نوع الرحلة</th><th>نوع الطائرة</th><th>FROM — TO</th><th>التاريخ</th><th>REMARKS</th><th></th>
+        </tr></thead>
+        <tbody id="t-body"></tbody>
+        <tfoot id="t-foot" class="hide"><tr><td class="sum" id="t-sum">0.0</td><td class="lbl">المجموع</td><td colspan="8"></td></tr></tfoot>
+      </table>
+    </div>
+    <div class="foot hide" id="t-footactions"><button class="reset" id="t-reset">مسح كل السجلات</button></div>
+  </div>
+</div>
+
+<script>
+var KEY="logbook:bishri:v1";
+var DEFAULT_PILOTS=["BEJAD","SHALAN","ALI","MANSOUR","ESSA","KHORMI","SHAHRANI","ALNEAMAH","MUSFER","OSAMA","OJEIM","SADAAN"];
+var DEFAULT_FTYPES=["C","F10","Hajj C","F - MULTI","C - MULTI","F - XC","C - XC","OMRH - C","F - HOIST"];
+
+var state={entries:[],pilots:DEFAULT_PILOTS.slice(),aircraft:[],flightTypes:DEFAULT_FTYPES.slice(),remarks:[],places:[]};
+var dn="DAY";
+
+function load(){try{var raw=localStorage.getItem(KEY);if(raw){var d=JSON.parse(raw);
+  if(Array.isArray(d.entries))state.entries=d.entries;
+  if(Array.isArray(d.pilots)&&d.pilots.length)state.pilots=d.pilots;
+  if(Array.isArray(d.aircraft))state.aircraft=d.aircraft;
+  if(Array.isArray(d.flightTypes)&&d.flightTypes.length)state.flightTypes=d.flightTypes;
+  if(Array.isArray(d.remarks))state.remarks=d.remarks;
+  if(Array.isArray(d.places))state.places=d.places;
+}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+
+function el(id){return document.getElementById(id);}
+function esc(s){return (s==null?"":String(s)).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function today(){var d=new Date(),p=function(n){return(""+n).padStart(2,"0");};return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());}
+function fmtDate(iso){if(!iso)return"—";var a=iso.split("-");return a[2]+"/"+a[1]+"/"+a[0];}
+
+function fillSelect(id,arr,extraFirst){var s=el(id);var cur=s.value;s.innerHTML="";
+  if(extraFirst){var o=document.createElement("option");o.value="";o.textContent=extraFirst;s.appendChild(o);}
+  arr.forEach(function(v){var o=document.createElement("option");o.value=v;o.textContent=v;s.appendChild(o);});
+  if(cur&&arr.indexOf(cur)>=0)s.value=cur;
+}
+function fillPlaces(){var dl=el("places");dl.innerHTML="";state.places.forEach(function(p){var o=document.createElement("option");o.value=p;dl.appendChild(o);});}
+
+function renderSelects(){
+  fillSelect("f-with",state.pilots,null);
+  fillSelect("f-ftype",state.flightTypes,null);
+  fillSelect("f-ac",state.aircraft,state.aircraft.length?null:"— أضف من زر + —");
+  fillSelect("f-rmk",state.remarks,"— بدون —");
+  fillPlaces();
+}
+
+function totals(){var t=0,da=0,ni=0;state.entries.forEach(function(e){var h=parseFloat(e.hours)||0;t+=h;if(e.dayNight==="NIGHT")ni+=h;else da+=h;});
+  return{total:t.toFixed(1),day:da.toFixed(1),night:ni.toFixed(1),flights:state.entries.length};}
+
+function renderTable(){
+  var tb=el("t-body");tb.innerHTML="";
+  if(state.entries.length===0){
+    tb.innerHTML='<tr><td colspan="10"><div class="empty">ما فيه رحلات مسجلة بعد — سجّل أول رحلة من فوق</div></td></tr>';
+    el("t-foot").classList.add("hide");el("t-footactions").classList.add("hide");
+  }else{
+    state.entries.forEach(function(e){
+      var tr=document.createElement("tr");
+      tr.innerHTML=
+        '<td class="hrs">'+(parseFloat(e.hours).toFixed(2))+'</td>'+
+        '<td><span class="pill '+(e.dayNight==="NIGHT"?"night":"day")+'">'+esc(e.dayNight)+'</span></td>'+
+        '<td>'+esc(e.sortie)+'</td>'+
+        '<td class="with">'+esc(e.coPilot)+'</td>'+
+        '<td class="ftype">'+esc(e.flightType)+'</td>'+
+        '<td class="ac">'+esc(e.aircraft)+'</td>'+
+        '<td class="rt">'+esc(e.from||"—")+'<i>←</i>'+esc(e.to||"—")+'</td>'+
+        '<td class="dt">'+fmtDate(e.date)+'</td>'+
+        '<td class="rmk" title="'+esc(e.remark)+'">'+esc(e.remark||"—")+'</td>'+
+        '<td><button class="del" data-del="'+e.id+'">×</button></td>';
+      tb.appendChild(tr);
+    });
+    el("t-foot").classList.remove("hide");el("t-footactions").classList.remove("hide");
+  }
+  var tt=totals();
+  el("s-total").textContent=tt.total;el("s-day").textContent=tt.day;el("s-night").textContent=tt.night;el("s-flights").textContent=tt.flights;
+  el("t-sum").textContent=tt.total;el("t-count").textContent="السجل · "+state.entries.length+" رحلة";
+}
+
+function addEntry(){
+  var h=parseFloat(el("f-hours").value);
+  if(!h||h<=0){alert("اكتب زمن الرحلة (الساعات) أول");return;}
+  var from=(el("f-from").value||"").trim().toUpperCase();
+  var to=(el("f-to").value||"").trim().toUpperCase();
+  var e={id:Date.now()+""+Math.random().toString(16).slice(2),
+    hours:h,dayNight:dn,sortie:el("f-sortie").value,coPilot:el("f-with").value,
+    flightType:el("f-ftype").value,aircraft:el("f-ac").value||"—",
+    from:from,to:to,date:el("f-date").value||today(),remark:el("f-rmk").value||""};
+  state.entries.unshift(e);
+  [from,to].forEach(function(p){if(p&&state.places.indexOf(p)<0)state.places.push(p);});
+  save();fillPlaces();renderTable();
+  el("f-hours").value="";el("f-from").value="";el("f-to").value="";
+}
+
+function setupAdd(kind,listName,selId,extraFirst){
+  var box=el("add-"+kind);var input=box.querySelector(".in");
+  function commit(){var v=(input.value||"").trim().toUpperCase();if(!v){box.classList.add("hide");return;}
+    if(state[listName].indexOf(v)<0)state[listName].push(v);
+    save();fillSelect(selId,state[listName],state[listName].length?null:extraFirst);el(selId).value=v;
+    input.value="";box.classList.add("hide");}
+  box.querySelector(".ok").onclick=commit;
+  input.addEventListener("keydown",function(ev){if(ev.key==="Enter")commit();});
+  box.querySelector(".no").onclick=function(){input.value="";box.classList.add("hide");};
+}
+
+function init(){
+  load();
+  el("f-date").value=today();
+  renderSelects();renderTable();
+
+  // day/night
+  el("f-dn").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;
+    dn=b.getAttribute("data-dn");
+    [].forEach.call(el("f-dn").children,function(c){c.className="";});
+    b.className=(dn==="DAY"?"on-day":"on-night");
+  });
+
+  // open add boxes
+  document.querySelectorAll(".mini[data-add]").forEach(function(btn){
+    btn.addEventListener("click",function(){var k=btn.getAttribute("data-add");var box=el("add-"+k);
+      box.classList.toggle("hide");if(!box.classList.contains("hide"))box.querySelector(".in").focus();});
+  });
+  setupAdd("with","pilots","f-with",null);
+  setupAdd("ftype","flightTypes","f-ftype",null);
+  setupAdd("ac","aircraft","f-ac","— أضف من زر + —");
+  setupAdd("rmk","remarks","f-rmk","— بدون —");
+
+  el("f-submit").addEventListener("click",addEntry);
+  el("f-hours").addEventListener("keydown",function(ev){if(ev.key==="Enter")addEntry();});
+
+  el("t-body").addEventListener("click",function(ev){var b=ev.target.closest("[data-del]");if(!b)return;
+    var id=b.getAttribute("data-del");state.entries=state.entries.filter(function(e){return e.id!==id;});save();renderTable();});
+
+  el("t-reset").addEventListener("click",function(){if(confirm("متأكد تبي تمسح كل السجلات؟ لا يمكن التراجع.")){state.entries=[];save();renderTable();}});
+}
+init();
+</script>
+</body>
+</html>
